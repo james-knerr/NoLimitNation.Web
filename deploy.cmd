@@ -93,6 +93,8 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
+call :ExecuteCmd "npm install angular-cli"
+echo    ** executed install angular-cli
 :: 3. Install npm packages
 IF EXIST "%PACKAGE_JSON_FOLDER%package.json" (
   echo "3. Install npm packages..."
