@@ -111,7 +111,8 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 
 
 :: 3. Install npm packages
-IF EXIST "%PACKAGE_JSON_FOLDER%package.json" (
+echo "%PACKAGE_JSON_FOLDER%"
+IF EXIST "%PACKAGE_JSON_FOLDER%\package.json" (
   echo "3. Install npm packages..."
   pushd "%PACKAGE_JSON_FOLDER%"
   echo **ExecuteCmd !NPM_CMD! install --production
