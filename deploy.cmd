@@ -61,7 +61,7 @@ goto Deployment
 
 IF DEFINED KUDU_SELECT_NODE_VERSION_CMD (
   :: The following are done only on Windows Azure Websites environment
-  call %KUDU_SELECT_NODE_VERSION_CMD% "%DEPLOYMENT_SOURCE%" "%DEPLOYMENT_TARGET%" "%DEPLOYMENT_TEMP%"
+  call %KUDU_SELECT_NODE_VERSION_CMD% "%PACKAGE_JSON_FOLDER%" "%DEPLOYMENT_TARGET%" "%DEPLOYMENT_TEMP%"
   IF !ERRORLEVEL! NEQ 0 goto error
 
   IF EXIST "%DEPLOYMENT_TEMP%\__nodeVersion.tmp" (
@@ -93,7 +93,9 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
-
+:: 2. Select node version
+echo "call :SelectNodeVersion"!
+call :SelectNodeVersion
 
 
 :: 1. KuduSync
@@ -103,9 +105,7 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-:: 2. Select node version
-echo "call :SelectNodeVersion"!
-call :SelectNodeVersion
+
 
 :: 3. Install npm packages
 IF EXIST "%PACKAGE_JSON_FOLDER%package.json" (
