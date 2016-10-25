@@ -23,7 +23,7 @@ setlocal enabledelayedexpansion
 SET ARTIFACTS=%~dp0%..\artifacts
 
 REM IF NOT DEFINED DEPLOYMENT_SOURCE (
-  SET DEPLOYMENT_SOURCE=%~dp0%dist
+  SET DEPLOYMENT_SOURCE=%~dp0%src
   
 REM )
 echo **DEPLOYMENT_SOURCE %DEPLOYMENT_SOURCE%
