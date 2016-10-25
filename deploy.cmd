@@ -28,6 +28,8 @@ REM IF NOT DEFINED DEPLOYMENT_SOURCE (
 REM )
 echo **DEPLOYMENT_SOURCE %DEPLOYMENT_SOURCE%
 
+SET PACKAGE_JSON_FOLDER=%~dp0%
+echo **PACKAGE_JSON_FOLDER %PACKAGE_JSON_FOLDER%
 
 IF NOT DEFINED DEPLOYMENT_TARGET (
   SET DEPLOYMENT_TARGET=%ARTIFACTS%\wwwroot
@@ -92,9 +94,9 @@ goto :EOF
 echo Handling node.js deployment.
 
 :: 3. Install npm packages
-IF EXIST "%~dp0%package.json" (
+IF EXIST "%PACKAGE_JSON_FOLDER%package.json" (
   echo "3. Install npm packages..."
-  pushd "%~dp0%"
+  pushd "%PACKAGE_JSON_FOLDER%"
   echo **ExecuteCmd !NPM_CMD! install --production
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
