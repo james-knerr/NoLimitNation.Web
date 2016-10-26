@@ -10,7 +10,7 @@
     git checkout master -b
 
     echo "~~~ Adding dist content"
-    git add dist/ *
+    git add .
 
     echo "~~~ Committing dist content"
     git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
