@@ -23,8 +23,13 @@ before_script:
 - npm install
 - ng build
 script: karma start karma.conf.js --single-run
-after_success: 
-- ./push.sh
+deploy:
+    provider: azure_web_apps
+    username: joe.jordan@boothbooks.com
+    password: conFusem3
+    site: http://nlnationweb.azurewebsites.net
+    verbose: true
+    on: master
 env:
   global:
     secure: YiOKOpGWhcYyHc6k/oB7OnGAcTorBn7Kr90LyNvu+tktfxmFKkVyALFSmrdCKm1wfYyeP1HGMP+iJjdxJM9gsxXOXaaHkQiUma994/3ls9AI3T7/ONqNO2CsDbv/cR/2Ah7NxgKiX9KbLITmPEb0Lw3djz/XJL6KiWl0PmxSNs+s9VK4C8oXoWASTGR39J+m2mZ4435x608BkY6yAJFo5ykmAnqiT2LRnSo/FIrYgO1FnGOoGRAg7MRitx7Sxf6kHQXadgIQx11v+ADOEq6G3xrNq18NFkNkLc8xgXy2+/VxWO7E2nuvV07gcb2K9LbnEs6kRrQSXKaJjE2hGRUDcrf/LoKgeSBXIGMlhR6LpXVQV89x/YFLrImssQ1ij5g0ppfUZPXsTnk/hIfWEh0Co+OfvN92ya8kgQvtGTB1/tR/mGTMLjxYVXU0JXR9rYSHe/E9dQQ1W1ODArnVjq9a4sUkFmAexiGwh61lDp+GyxOwpgIvKCioZ7vUtHhK5KPZm/ig6cXan6whlWb1gjLUOKkNhtH6Y/MMdGhZXFAimQt2Tav0CDEt6kIf0bO6oPTASyBJJi1Jk5QLzslzNGH06RJc40Uily1/mb3HKBfb2WHluXNzqi4NMRk39ClX6KvBmTqdLhr36cn03sdWMsYfjbk41BqQJ/E75Neojg5YZKA=

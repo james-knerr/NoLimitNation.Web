@@ -22,14 +22,9 @@ setlocal enabledelayedexpansion
 
 SET ARTIFACTS=%~dp0%..\artifacts
 
-REM IF NOT DEFINED DEPLOYMENT_SOURCE (
-  SET DEPLOYMENT_SOURCE=%~dp0%src
-  
-REM )
-echo **DEPLOYMENT_SOURCE %DEPLOYMENT_SOURCE%
-
-SET PACKAGE_JSON_FOLDER=%~dp0%.
-echo **PACKAGE_JSON_FOLDER %PACKAGE_JSON_FOLDER%
+IF NOT DEFINED DEPLOYMENT_SOURCE (
+  SET DEPLOYMENT_SOURCE=%~dp0%\dist
+)
 
 IF NOT DEFINED DEPLOYMENT_TARGET (
   SET DEPLOYMENT_TARGET=%ARTIFACTS%\wwwroot
@@ -61,7 +56,7 @@ goto Deployment
 
 IF DEFINED KUDU_SELECT_NODE_VERSION_CMD (
   :: The following are done only on Windows Azure Websites environment
-  call %KUDU_SELECT_NODE_VERSION_CMD% "%PACKAGE_JSON_FOLDER%" "%DEPLOYMENT_TARGET%" "%DEPLOYMENT_TEMP%"
+  call %KUDU_SELECT_NODE_VERSION_CMD% "%DEPLOYMENT_SOURCE%" "%DEPLOYMENT_TARGET%" "%DEPLOYMENT_TEMP%"
   IF !ERRORLEVEL! NEQ 0 goto error
 
   IF EXIST "%DEPLOYMENT_TEMP%\__nodeVersion.tmp" (
@@ -93,38 +88,29 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
-:: 2. Select node version
-echo "call :SelectNodeVersion"!
-call :SelectNodeVersion
-
-:: Install Angular-CLI
-echo ":ExecuteCmd !NPM_CMD! install angular-cli"!
-call :ExecuteCmd !NPM_CMD! install angular-cli -g
-
 :: 1. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  echo **ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
+:: 2. Select node version
+echo "call :SelectNodeVersion"!
+call :SelectNodeVersion
 
+REM :: 3. Install npm packages
+REM IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+REM   echo "3. Install npm packages..."
+REM   pushd "%DEPLOYMENT_TARGET%"
+REM   call :ExecuteCmd !NPM_CMD! install --production
+REM   IF !ERRORLEVEL! NEQ 0 goto error
+REM   popd
+REM )
 
-:: 3. Install npm packages
-echo "%PACKAGE_JSON_FOLDER%"
-IF EXIST "%PACKAGE_JSON_FOLDER%\package.json" (
-  echo "3. Install npm packages..."
-  pushd "%PACKAGE_JSON_FOLDER%"
-  echo **ExecuteCmd !NPM_CMD! install --production
-  call :ExecuteCmd !NPM_CMD! install --production
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
-
-:: 4. Compile TypeScript
-echo "4. Compile TypeScript"
-echo Transpiling TypeScript in %DEPLOYMENT_TARGET%...
-call :ExecuteCmd node %DEPLOYMENT_TARGET%\node_modules\typescript\bin\tsc -p "%DEPLOYMENT_TARGET%"
+REM :: 4. Compile TypeScript
+REM echo "4. Compile TypeScript"
+REM echo Transpiling TypeScript in %DEPLOYMENT_TARGET%...
+REM call :ExecuteCmd node %DEPLOYMENT_TARGET%\node_modules\typescript\bin\tsc -p "%DEPLOYMENT_TARGET%"
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
 
