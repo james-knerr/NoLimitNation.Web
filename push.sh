@@ -1,5 +1,5 @@
     #!/bin/sh
-
+    set -ve
     echo "~~~ Setting User Info"
     git config --global user.email "joe.jordan@outlook.com"
     git config --global user.name "conFusem3"
