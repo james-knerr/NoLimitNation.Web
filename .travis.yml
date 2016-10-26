@@ -23,11 +23,9 @@ before_script:
 - npm install
 - ng build
 script: karma start karma.conf.js --single-run
-deploy:
-    provider: azure_web_apps
-    username: nlnTravisCi
-    password: Ut0p1aBl1ss
-    site: nlnationweb
-    verbose: true
-    skip_cleanup: true
-    on: master
+after_success:
+- "./push.sh"
+env:
+  global:
+  - secure: uq7I4tNLWxMYb8i0b47sVlJkTsh4B3k7HO+ccjzA6yQtQ6treRyp7lPeFO0reBdNtSUR6AQTAePkuFsH7sFzsKyzPQlvomEBwD8Ry8xSMuizX0STzBnIKx7n+EwcaWXD57P+3LNawdR6MX+SYB62eASyJICW4q5kOBzc0zkmsBaqQtoPMClN+Sd9y7r5HeGana1KpSy13UHVX4kHVaQ2SP1eVl3AbQ6EZircf2cGefWsEo96x/8ThegRWjh8WZxcAPHrM1ZhX5n4R5g8uesCTtW3IBls59Z5TaJdAmXSdy2G55xRzN5OxH83budxS+sPBAGnmd8vQOY5kbFM3OuGNi4TRwlRi8QSgyjMCpjiiC08W+GUyj/BS357CaonweG9/EUQGtx+aU1eycgii0HVHRylv6JdBpHbzt2UXuMoLGfgdsSr1c8OCqcTgVcpbAYU6Jwgk+EPhSWwWnYo7lkagbC5tbeuTj6vQDYMUsRcrP2HJ6PMUHOh+jjBxm7dYkJsQtwwTyeeaHhAYZjrERqq0wZoeMQk1tSYNFO5Xo2KQvkHTZqkOuhZxWash+5eGlRauLYoULJqOEqNcCu1b6YB/UGfZklIWsDG4irBRy8YSpVvIO7fNSBJ6W/GX6qE/FNA43v9CzVBqWi2HcbM1Oo7EpnuK7q8BR4cYtw+TX8u49k=
+  
