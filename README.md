@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/NoLimitNation/NoLimitNation.Web.svg?token=x2mpqKT7fWqzRBL8UXgz&branch=master)](https://travis-ci.com/NoLimitNation/NoLimitNation.Web)
+
 # OurPlanets
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
