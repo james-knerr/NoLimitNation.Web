@@ -1,4 +1,4 @@
-    # #!/bin/sh
+    #!/bin/sh
 
     # echo "~~~ Setting User Info"
     # git config --global user.email "joe.jordan@outlook.com"
