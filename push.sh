@@ -25,6 +25,7 @@
     # echo "~~~ Complete ~~~"
     # #   git push --quiet --set-upstream origin-pages gh-pages 
 
+set -ev
 
 $ git push https://github.com/NoLimitNation/Web.Build.git
 Username: djordan25
