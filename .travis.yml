@@ -29,4 +29,5 @@ deploy:
     password: Ut0p1@Bliss
     site: http://nlnationweb.azurewebsites.net
     verbose: true
+    skip_cleanup: true
     on: master
