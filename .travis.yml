@@ -27,7 +27,7 @@ deploy:
     provider: azure_web_apps
     username: nlnTravisCi
     password: Ut0p1aBl1ss
-    site: https://nlnTravisCi@nlnationweb.scm.azurewebsites.net:443/NLNationWeb.git
+    site: nlnationweb
     verbose: true
     skip_cleanup: true
     on: master
