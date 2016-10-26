@@ -26,7 +26,7 @@ script: karma start karma.conf.js --single-run
 deploy:
     provider: azure_web_apps
     username: nlnTravisCi
-    password: Ut0p1@Bliss
+    password: Ut0p1aBl1ss
     site: http://nlnationweb.azurewebsites.net
     verbose: true
     skip_cleanup: true
