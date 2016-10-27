@@ -11,7 +11,7 @@
 
     #   git checkout -b gh-pages
     git checkout master
-    git add .
+    git add --force dist
     git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 
      # >  /dev/null 2>&1
