@@ -1,15 +1,20 @@
     #!/bin/sh
     set -ve
+    git remote -v
+
+
+
     git config --global user.email "joe.jordan@outlook.com"
     git config --global user.name "conFusem3"
 
+    git remote set-url https://${GH_TOKEN}@github.com/NoLimitNation/Web.Build.git
 
     #   git checkout -b gh-pages
     git checkout master
     git add .
     git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 
-    git remote origin https://${GH_TOKEN}@github.com/NoLimitNation/Web.Build.git # >  /dev/null 2>&1
+     # >  /dev/null 2>&1
 
     git push origin master
 
