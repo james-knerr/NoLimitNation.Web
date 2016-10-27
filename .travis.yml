@@ -6,8 +6,9 @@ node_js:
 cache:
   directories:
   - node_modules
-  - $(npm config get prefix)/bin/angular-cli
-  - $(npm config get prefix)/bin/karma
+  - $(npm config get prefix)/bin
+#   - $(npm config get prefix)/bin/angular-cli
+#   - $(npm config get prefix)/bin/karma
 addons: 
 apt:
   sources:

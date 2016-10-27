@@ -9,6 +9,7 @@
     git remote -v
 
     git fetch
+    git pull
     
     git checkout master
     git add --force dist
