@@ -18,16 +18,16 @@ describe('App: OurPlanets', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'Planets works!'`, async(() => {
+  it(`should have as title 'No Limit Nation'`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Planets works!');
+    expect(app.title).toEqual('No Limit Nation');
   }));
 
-  it('should render title in a h1 tag', async(() => {
+  it('should render title in a div tag', async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Planets works!');
+    expect(compiled.querySelector('div').textContent).toContain('No Limit Nation');
   }));
 });
