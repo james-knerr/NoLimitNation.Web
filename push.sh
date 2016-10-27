@@ -6,7 +6,10 @@
     git config --global user.name "Travis Ci"
 
     git remote set-url origin https://${GH_TOKEN}@github.com/NoLimitNation/Web.Build.git
+    git remote -v
 
+    git fetch
+    
     git checkout master
     git add --force dist
     git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
