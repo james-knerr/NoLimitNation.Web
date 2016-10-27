@@ -8,14 +8,14 @@
     git remote set-url origin https://${GH_TOKEN}@github.com/NoLimitNation/Web.Build.git
     git remote -v
 
-    git fetch
-    git pull
-    
+  #  git fetch
+   # git pull
+
     git checkout master
     git add --force dist
     git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 
-    git push origin master
+    git push --force origin master
 
 
 # $ git push https://github.com/NoLimitNation/Web.Build.git
