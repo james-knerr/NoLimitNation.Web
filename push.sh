@@ -5,7 +5,7 @@
 
 
     #   git checkout -b gh-pages
-    git checkout -b master
+    git checkout master
     git add .
     git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 
