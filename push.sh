@@ -7,7 +7,7 @@
     git config --global user.email "joe.jordan@outlook.com"
     git config --global user.name "conFusem3"
 
-    git remote set-url https://${GH_TOKEN}@github.com/NoLimitNation/Web.Build.git
+    git remote set-url origin https://${GH_TOKEN}@github.com/NoLimitNation/Web.Build.git
 
     #   git checkout -b gh-pages
     git checkout master
