@@ -1,0 +1,12 @@
+body {
+    background-color: #002D60;
+}
+
+.nl-title {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: #004898
+}
